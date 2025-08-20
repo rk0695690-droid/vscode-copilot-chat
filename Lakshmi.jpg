@@ -1,0 +1,145 @@
+#<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday Lakshmi</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #ffdde1, #ee9ca7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      overflow: hidden;
+    }
+    .card {
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+      padding: 30px;
+      text-align: center;
+      max-width: 400px;
+      animation: pop 0.8s ease;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    h1 {
+      color: #ff4b2b;
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    p {
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+    img {
+      width: 100%;
+      border-radius: 15px;
+      margin-top: 15px;
+    }
+    button {
+      background: #ff4b2b;
+      border: none;
+      color: white;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #ff1c1c;
+    }
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="confetti"></canvas>
+  <div class="card">
+    <h1>🎉 Happy Birthday Lakshmi 🎂</h1>
+    <p>Wishing you lots of happiness, love, and success on your special day 💖</p>
+    <button onclick="alert('Lots of love and blessings to you, Lakshmi! 🎁')">Send Wishes</button>
+    <img src="lakshmi.jpg" alt="Lakshmi's Birthday Image">
+  </div>
+
+  <script>
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    let particles = [];
+    for (let i = 0; i < 150; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 4 + 1,
+        d: Math.random() * 150
+      });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(255,182,193,0.8)";
+      ctx.beginPath();
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        ctx.moveTo(p.x, p.y);
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2, true);
+      }
+      ctx.fill();
+      update();
+    }
+    function update() {
+      for (let i = 0; i < particles.length; i++) {
+        const p = particles[i];
+        p.y += Math.cos(p.d) + 1 + p.r/2;
+        p.x += Math.sin(0);
+        if (p.y > canvas.height) {
+          particles[i] = { x: Math.random() * canvas.width, y: 0, r: p.r, d: p.d };
+        }
+      }
+    }
+    setInterval(draw, 33);
+  </script>
+</body>
+</html> GitHub Copilot - Your AI peer programmer
+
+**[GitHub Copilot](https://code.visualstudio.com/docs/copilot/overview)** is an AI peer programming tool that helps you write code faster and smarter.
+
+GitHub Copilot adapts to your unique needs allowing you to select the best model for your project, customize chat responses with custom instructions, and utilize agent mode for AI-powered, seamlessly integrated peer programming sessions.
+
+**Sign up for [GitHub Copilot Free](https://github.com/settings/copilot?utm_source=vscode-chat-readme&utm_medium=first&utm_campaign=2025mar-em-MSFT-signup)!**
+
+![Working with GitHub Copilot agent mode to make edits to code in your workspace](https://github.com/microsoft/vscode-copilot-release/blob/main/images/hero-dark.png?raw=true)
+
+When you install Copilot in Visual Studio Code, you get two extensions:
+* **[GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)** - Provides inline coding suggestions as you type.
+* **[GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)** (this extension) - A companion extension that provides conversational AI assistance.
+
+## Getting access to GitHub Copilot
+
+Sign up for [GitHub Copilot Free](https://github.com/settings/copilot?utm_source=vscode-chat-readme&utm_medium=second&utm_campaign=2025mar-em-MSFT-signup), or request access from your enterprise admin.
+
+To access GitHub Copilot, an active GitHub Copilot subscription is required. You can read more about our business and individual offerings at [github.com/features/copilot](https://github.com/features/copilot?utm_source=vscode-chat&utm_medium=readme&utm_campaign=2025mar-em-MSFT-signup).
+
+## AI-powered coding sessions
+
+**Start an AI-powered coding session tailored to your workflow**. Copilot Edits allows you to quickly iterate on code changes directly in the editor, across multiple files using natural language. For a more autonomous peer programmer experience,
+[agent mode](https://aka.ms/vscode-copilot-agent) performs multi-step coding tasks at your command. It automatically handles compile and lint errors, monitors terminal and test output, and iterates until the task is complete. [Edit mode](https://aka.ms/vscode-copilot-edit) offers a conversational, step-by-step coding experience. Engage in multi-turn chat conversations while Copilot applies edits directly to your codebase, allowing you to review changes in context and maintain full control.
+
+![Agent mode in Copilot Chat creating a new Vue application](https://github.com/microsoft/vscode-copilot-release/blob/main/images/agent-mode-readme.gif?raw=true)
+
+## Code suggestions in the editor
+
+**Automatically receive code suggestions in the editor** from [completions](https://aka.ms/vscode-completions) and [next edit suggestions](https://aka.ms/vscode-nes) to help you write code faster. Code completions provide suggestions at the current location, tailored to your coding style and your existing code. Copilot next edit suggestions (Copilot NES) takes it a step further and predicts what and where your next logical code change will be. Use the 
